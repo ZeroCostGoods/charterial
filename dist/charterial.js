@@ -73,27 +73,56 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(6);
 /**
  * The main Charterial class
  */
 var Charterial = (function () {
     function Charterial(options) {
+        var _this = this;
+        this.createCanvases = function () {
+            _this.canvasElements = {};
+            var graphsCanvas = document.createElement("canvas");
+            graphsCanvas.id = 'graphsCanvas';
+            graphsCanvas.className = 'main-canvas';
+            graphsCanvas.dataset.paperResize = 'true';
+            // <canvas className="main-canvas" key="mainCanvas" id={this.mainCanvasId}
+            // data-paper-resize="true"></canvas>
+            _this.wrapperDiv.appendChild(graphsCanvas);
+        };
+        console.log("Charterial()");
+        console.log(JSON.stringify(options, null, 4));
+        this.wrapperDiv = document.getElementById(options.divId);
+        if (!this.wrapperDiv) {
+            console.error("Charterial: could not instantiate. No div with id " + options.divId);
+            return;
+        }
+        this.createCanvases();
     }
     return Charterial;
 }());
 exports.Charterial = Charterial;
 
 
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
 /***/ })
-/******/ ]);
+
+/******/ });
 });

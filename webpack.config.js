@@ -1,5 +1,12 @@
 'use strict';
 
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractSass = new ExtractTextPlugin({
+    filename: "./dist/[name].css",
+    disable: process.env.NODE_ENV === "development"
+});
+
 var path = require('path');
 
 var webExport = {
@@ -9,24 +16,34 @@ var webExport = {
     output: {
         path: path.resolve(__dirname),
         filename: './dist/[name].js',
-        // library: false,
         libraryTarget: 'umd',
     },
     resolve: {
-        // root: [path.resolve(__dirname, 'node_modules')],
-        // Add `.ts` and `.tsx` as a resolvable extension.
-        // extensions: ['.webpack.js', '.ts', '.tsx', '.js'],
-        // modules: ['node_modules']
-        extensions: ['.ts', '.tsx'],
+        extensions: ['.ts', '.tsx', '.js'],
     },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader?tsconfig=tsconfig.json',
+            },
+            {
+                test: /\.scss$/,
+                use: extractSass.extract({
+                    use: [{
+                        loader: "css-loader"
+                    }, {
+                        loader: "sass-loader"
+                    }],
+                    // use style-loader in development
+                    fallback: "style-loader"
+                })
             }
         ]
     },
+    plugins: [
+        extractSass
+    ],
     watchOptions: {
         aggregateTimeout: 300
     }

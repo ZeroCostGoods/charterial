@@ -1,3 +1,11 @@
+export interface ICharterialGraphData {
+  id: string,
+  graphType: string,
+  data: Array<number>,
+}
+
 export interface ICharterialConfig {
-  wrapperDiv: HTMLElement,
+  graphId: string,
+  divId: string,
+  graphData: { [id:string]:ICharterialGraphData },
 }

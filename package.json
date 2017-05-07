@@ -1,5 +1,5 @@
 {
-  "name": "charterial",
+  "name": "charterial-js",
   "version": "0.1.0",
   "description": "A canvas based graphing library",
   "main": "./dist/charterial.js",

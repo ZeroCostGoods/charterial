@@ -1,13 +1,11 @@
 .chtl-wrapper {
   position: relative;
   margin: 20px;
-  height: 350px;
-}
+  height: 350px; }
 
 canvas[resize] {
   width: 100%;
-  height: 100%;
-}
+  height: 100%; }
 
 canvas {
   display: block;
@@ -15,24 +13,18 @@ canvas {
   position: absolute;
   left: 0;
   top: 0;
-
   width: 100%;
   height: 100%;
-  cursor: crosshair;
-
-}
+  cursor: crosshair; }
 
 .graphs-canvas {
   z-index: 0;
-  background: #eaeaea;
-}
+  background: #eaeaea; }
 
 .markings-canvas {
   z-index: 1;
-  background: transparent;
-}
+  background: transparent; }
 
 .overlay-canvas {
   z-index: 1;
-  background: transparent;
-}
+  background: transparent; }

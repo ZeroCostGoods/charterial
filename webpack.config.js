@@ -1,5 +1,6 @@
 'use strict';
 
+const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const extractSass = new ExtractTextPlugin({
@@ -7,9 +8,13 @@ const extractSass = new ExtractTextPlugin({
     disable: process.env.NODE_ENV === "development"
 });
 
-var path = require('path');
+const providePlugin = new webpack.ProvidePlugin({
+    paper: 'paper'
+});
 
-var webExport = {
+const path = require('path');
+
+const webExport = {
     entry: {
         charterial: path.resolve(__dirname, 'src/charterial.ts'),
     },
@@ -42,7 +47,8 @@ var webExport = {
         ]
     },
     plugins: [
-        extractSass
+        extractSass,
+        providePlugin
     ],
     watchOptions: {
         aggregateTimeout: 300

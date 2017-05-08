@@ -20204,6 +20204,12 @@ __webpack_require__(0);
  * The main Charterial class
  */
 var Charterial = (function () {
+    /**
+     * Create a new Charterial instance.  In the config options, a chartId and a divId *must* be specified.
+     * The chartId will be the unique name for this chart.  And the divId *must* identify an existing div in the DOM
+     * into which Charterial will create the canvases and charts.
+     * @param options the config options to use for creating this instance of Charterial
+     */
     function Charterial(options) {
         var _this = this;
         /**
@@ -20267,22 +20273,40 @@ var Charterial = (function () {
             });
             _this.canvasElements['overlay'].addEventListener("mouseleave", _this.mouseLeave);
         };
+        /** BEGIN MOUSE HANDLERS **/
         this.mouseMove = function (paperEvent) {
+            console.log("mouse move");
         };
         this.mouseUp = function (paperEvent) {
+            console.log("mouse up");
         };
         this.mouseDrag = function (paperEvent) {
+            console.log("mouse drag");
         };
         this.mouseLeave = function (paperEvent) {
+            console.log("mouse leave");
         };
         this.wrapperDiv = document.getElementById(options.divId);
         if (!this.wrapperDiv) {
             console.error("Charterial: could not instantiate. No div with id " + options.divId);
             return;
         }
+        if (!options.chartId) {
+            console.error("Charterial: could not instantiate without a chart Id");
+            return;
+        }
         this.createCanvases();
         this.setupPaper();
     }
+    /** END MOUSE HANDLERS **/
+    /************** BEGIN PUBLIC METHODS  ****************************************************************************/
+    /**
+     * Set the chart data for the chart.  Upon validation, immediately redraw the chart.
+     * @param chartData CtlChartData that holds the data upon which to draw the chart
+     */
+    Charterial.prototype.setChartData = function (chartData) {
+        this.chartData = chartData;
+    };
     return Charterial;
 }());
 exports.Charterial = Charterial;

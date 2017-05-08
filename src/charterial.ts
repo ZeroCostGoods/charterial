@@ -20,13 +20,25 @@ class Charterial {
     // the Paper interaction tool
     private interactionTool:any;
 
+    // the graphs data
+    private chartData:types.CtlChartData;
 
-
-    constructor(options: types.ICharterialConfig) {
+    /**
+     * Create a new Charterial instance.  In the config options, a chartId and a divId *must* be specified.
+     * The chartId will be the unique name for this chart.  And the divId *must* identify an existing div in the DOM
+     * into which Charterial will create the canvases and charts.
+     * @param options the config options to use for creating this instance of Charterial
+     */
+    constructor(options: types.CtlConfig) {
         this.wrapperDiv = document.getElementById(options.divId);
 
         if (!this.wrapperDiv) {
             console.error(`Charterial: could not instantiate. No div with id ${options.divId}`);
+            return;
+        }
+
+        if (!options.chartId) {
+            console.error(`Charterial: could not instantiate without a chart Id`);
             return;
         }
 
@@ -109,21 +121,35 @@ class Charterial {
         this.canvasElements['overlay'].addEventListener("mouseleave", this.mouseLeave);
     };
 
+    /** BEGIN MOUSE HANDLERS **/
     private mouseMove = (paperEvent:any) => {
-
+        console.log(`mouse move`);
     };
 
     private mouseUp = (paperEvent:any) => {
-
+        console.log(`mouse up`);
     };
 
     private mouseDrag = (paperEvent:any) => {
-
+        console.log(`mouse drag`);
     };
 
     private mouseLeave = (paperEvent:any) => {
-
+        console.log(`mouse leave`);
     };
+    /** END MOUSE HANDLERS **/
+
+    /************** BEGIN PUBLIC METHODS  ****************************************************************************/
+
+    /**
+     * Set the chart data for the chart.  Upon validation, immediately redraw the chart.
+     * @param chartData CtlChartData that holds the data upon which to draw the chart
+     */
+    public setChartData(chartData:types.CtlChartData) {
+        this.chartData = chartData;
+    }
+
+    /************** END PUBLIC METHODS *******************************************************************************/
 }
 
 export {Charterial};

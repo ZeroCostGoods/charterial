@@ -1,7 +1,7 @@
 // Our constructor options...
 let options = {
     divId: 'demo1',     // specifies the ID of the div into which to place Charterial
-    graphId: 'demo1'    // the name of the graph we want to create.  Should be globally unique
+    chartId: 'demo1'    // the name of the chart we want to create.  Should be globally unique
 };
 
 // instantiate Charterial
@@ -44,4 +44,6 @@ let chartData = {
 };
 
 console.log(JSON.stringify(chartData, null, 4));
+
+chtl.setChartData(chartData);
 

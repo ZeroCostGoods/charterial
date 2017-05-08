@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
     filename: "./dist/[name].css",
@@ -10,6 +11,13 @@ const extractSass = new ExtractTextPlugin({
 
 const providePlugin = new webpack.ProvidePlugin({
     paper: 'paper'
+});
+
+const typedocPlugin = new TypedocWebpackPlugin({
+    excludePrivate: true,
+    mode: 'modules',
+    path: 'doc',
+    src: 'src/',
 });
 
 const path = require('path');
@@ -48,7 +56,8 @@ const webExport = {
     },
     plugins: [
         extractSass,
-        providePlugin
+        providePlugin,
+        typedocPlugin
     ],
     watchOptions: {
         aggregateTimeout: 300
